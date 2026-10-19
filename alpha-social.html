@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0866ff">
+<title>Alpha — Connect. Create. Share.</title>
+
+<style>
+:root {
+  --bg: #f0f2f5;
+  --card: #ffffff;
+  --text: #1c1e21;
+  --muted: #65676b;
+  --line: #dedfe2;
+  --blue: #0866ff;
+  --input: #f0f2f5;
+  --shadow: 0 2px 8px #0000000d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background .2s, color .2s;
+}
+
+body.dark {
+  --bg: #18191a;
+  --card: #242526;
+  --text: #e4e6eb;
+  --muted: #b0b3b8;
+  --line: #3e4042;
+  --input: #3a3b3c;
+  --shadow: 0 2px 8px #00000020;
+}
+
+button, input, textarea, select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 13px;
+  font-weight: 600;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.primary {
+  background: var(--blue);
+  color: white;
+}
+
+.secondary {
+  background: var(--input);
+  color: var(--text);
+}
+
+.danger {
+  background: #ffe8e8;
+  color: #c62828;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  min-height: 62px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 4%;
+}
+
+.logo {
+  font-size: 27px;
+  font-weight: 900;
+  color: var(--blue);
+  letter-spacing: -1px;
+}
+
+.search {
+  max-width: 280px;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 22px;
+  background: var(--input);
+  color: var(--text);
+}
+
+.top-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+
+.icon-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  padding: 0;
+  background: var(--input);
+  color: var(--text);
+  font-size: 19px;
+}
+
+.layout {
+  max-width: 1400px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 235px minmax(0, 650px) 265px;
+  gap: 20px;
+  padding: 20px 14px;
+  align-items: start;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 15px;
+  box-shadow: var(--shadow);
+}
+
+.side-menu {
+  position: sticky;
+  top: 82px;
+}
+
+.menu-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  margin: 3px 0;
+}
+
+.menu-item:hover,
+.menu-item.active {
+  background: var(--input);
+}
+
+.menu-item span {
+  font-size: 21px;
+  width: 28px;
+}
+
+h1, h2, h3, p {
+  overflow-wrap: anywhere;
+}
+
+h2 {
+  font-size: 21px;
+  margin: 0 0 14px;
+}
+
+h3 {
+  font-size: 16px;
+  margin: 0 0 9px;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.avatar {
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--input);
+  flex-shrink: 0;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.row-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.grow {
+  flex: 1;
+  min-width: 0;
+}
+
+.field {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 12px;
+  background: var(--input);
+  color: var(--text);
+  margin: 6px 0;
+}
+
+textarea.field {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.pill {
+  background: var(--input);
+  border-radius: 20px;
+  padding: 7px 11px;
+  font-size: 13px;
+}
+
+.story-list {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 4px 0 10px;
+}
+
+.story {
+  min-width: 88px;
+  height: 135px;
+  border-radius: 12px;
+  background: linear-gradient(150deg, #0866ff, #9c27b0);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.story img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .7;
+}
+
+.story span {
+  position: relative;
+  z-index: 1;
+}
+
+.post {
+  overflow: hidden;
+}
+
+.post-content {
+  white-space: pre-wrap;
+  line-height: 1.5;
+  margin: 13px 0;
+}
+
+.post-image {
+  width: calc(100% + 32px);
+  max-width: none;
+  margin-left: -16px;
+  display: block;
+  max-height: 600px;
+  object-fit: contain;
+  background: var(--input);
+}
+
+.post-actions {
+  display: flex;
+  gap: 5px;
+  border-top: 1px solid var(--line);
+  margin-top: 10px;
+  padding-top: 9px;
+}
+
+.post-actions button {
+  flex: 1;
+  background: transparent;
+  color: var(--muted);
+  padding: 10px 4px;
+}
+
+.post-actions button:hover {
+  background: var(--input);
+}
+
+.comment {
+  padding: 10px;
+  border-radius: 12px;
+  background: var(--input);
+  margin: 7px 0;
+}
+
+.comment-form {
+  display: flex;
+  gap: 7px;
+}
+
+.comment-form input {
+  min-width: 0;
+  flex: 1;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.stat {
+  background: var(--input);
+  padding: 14px;
+  border-radius: 10px;
+}
+
+.stat strong {
+  display: block;
+  font-size: 22px;
+  margin-top: 5px;
+}
+
+.page-banner {
+  border-radius: 10px;
+  min-height: 90px;
+  background: linear-gradient(120deg, #0866ff, #7c4dff);
+  margin-bottom: 12px;
+}
+
+.badge {
+  display: inline-block;
+  background: #e7f3ff;
+  color: #0866ff;
+  border-radius: 12px;
+  padding: 3px 7px;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none !important;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 13px 0;
+}
+
+#toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  background: #202124;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 10px;
+  display: none;
+  max-width: 90%;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: #0009;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+
+.modal-box {
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--card);
+  color: var(--text);
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.modal-close {
+  float: right;
+}
+
+#cameraPreview {
+  width: 100%;
+  background: #111;
+  border-radius: 10px;
+  margin-top: 12px;
+}
+
+.empty {
+  text-align: center;
+  padding: 30px 10px;
+  color: var(--muted);
+}
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  padding: 15px;
+}
+
+@media (max-width: 1000px) {
+  .layout {
+    grid-template-columns: 190px minmax(0, 1fr);
+  }
+
+  .rightbar {
+    display: none;
+  }
+}
+
+@media (max-width: 650px) {
+  .topbar {
+    padding: 9px;
+    gap: 8px;
+  }
+
+  .logo {
+    font-size: 22px;
+  }
+
+  .search {
+    max-width: none;
+    min-width: 0;
+    padding: 10px;
+  }
+
+  .top-actions .desktop-only {
+    display: none;
+  }
+
+  .layout {
+    display: block;
+    padding: 10px 8px;
+  }
+
+  .side-menu {
+    position: static;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+
+  .menu-item {
+    width: auto;
+    min-width: 58px;
+    flex-direction: column;
+    gap: 3px;
+    text-align: center;
+    font-size: 11px;
+    padding: 8px;
+  }
+
+  .menu-item span {
+    width: auto;
+  }
+
+  .card {
+    padding: 13px;
+  }
+
+  .post-image {
+    width: calc(100% + 26px);
+    margin-left: -13px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="logo">α Alpha</div>
+
+  <input
+    id="searchInput"
+    class="search"
+    type="search"
+    placeholder="Search Alpha..."
+    aria-label="Search Alpha"
+  >
+
+  <div class="top-actions">
+    <button class="icon-btn" title="Home" onclick="showPage('home')">⌂</button>
+    <button class="icon-btn" title="Messages" onclick="showPage('messages')">✉</button>
+    <button class="icon-btn" title="Notifications" onclick="showPage('notifications')">🔔</button>
+    <button class="icon-btn desktop-only" title="Dark mode" onclick="toggleDark()">☾</button>
+  </div>
+</header>
+
+<div class="layout">
+
+  <aside class="side-menu card">
+    <button class="menu-item active" data-page="home" onclick="showPage('home')">
+      <span>🏠</span> Home
+    </button>
+
+    <button class="menu-item" data-page="friends" onclick="showPage('friends')">
+      <span>🤝</span> Friends
+    </button>
+
+    <button class="menu-item" data-page="messages" onclick="showPage('messages')">
+      <span>💬</span> Messages
+    </button>
+
+    <button class="menu-item" data-page="pages" onclick="showPage('pages')">
+      <span>📄</span> Pages
+    </button>
+
+    <button class="menu-item" data-page="profile" onclick="showPage('profile')">
+      <span>👤</span> Profile
+    </button>
+
+    <button class="menu-item" data-page="stories" onclick="showPage('stories')">
+      <span>🎞️</span> Stories
+    </button>
+
+    <button class="menu-item" data-page="monetization" onclick="showPage('monetization')">
+      <span>💰</span> Monetization
+    </button>
+
+    <button class="menu-item" data-page="privacy" onclick="showPage('privacy')">
+      <span>🔒</span> Privacy
+    </button>
+
+    <button class="menu-item" data-page="settings" onclick="showPage('settings')">
+      <span>⚙️</span> Settings
+    </button>
+
+    <hr>
+
+    <button class="menu-item" onclick="toggleDark()">
+      <span>🌙</span> Dark Mode
+    </button>
+  </aside>
+
+  <main id="mainContent">
+
+    <section id="page-home" class="page">
+
+      <div class="card">
+        <div class="row">
+          <img class="avatar" id="smallAvatar" alt="Your profile">
+          <button class="secondary grow" onclick="openPostComposer()">
+            What's on your mind?
+          </button>
+        </div>
+
+        <hr>
+
+        <div class="row-between">
+          <button class="secondary" onclick="openPostComposer('photo')">🖼️ Photo</button>
+          <button class="secondary" onclick="openStoryComposer()">🎞️ Story</button>
+          <button class="secondary" onclick="openPostComposer('feeling')">😊 Feeling</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Stories</h3>
+        <div id="storyStrip" class="story-list"></div>
+      </div>
+
+      <div id="feed"></div>
+    </section>
+
+    <section id="page-friends" class="page hidden">
+      <div class="card">
+        <h2>🤝 Friends</h2>
+        <p class="muted">Manage friend requests and connections.</p>
+        <div id="friendStats" class="pills"></div>
+      </div>
+
+      <div class="card">
+        <h3>Friend Requests</h3>
+        <div id="requestsList"></div>
+      </div>
+
+      <div class="card">
+        <h3>People You May Know</h3>
+        <div id="peopleList"></div>
+      </div>
+
+      <div class="card">
+        <h3>Your Friends</h3>
+        <div id="friendsList"></div>
+      </div>
+    </section>
+
+    <section id="page-profile" class="page hidden">
+      <div class="card">
+        <div class="page-banner"></div>
+
+        <div class="row">
+          <img id="profileAvatar" class="avatar" style="width:80px;height:80px" alt="Profile picture">
+
+          <div class="grow">
+            <h2 id="profileName">Alpha User</h2>
+            <p id="profileBio" class="muted">Welcome to Alpha!</p>
+            <span class="badge">Demo Profile</span>
+          </div>
+        </div>
+
+        <div class="stat-grid" style="margin-top:15px">
+          <div class="stat">Friends<strong id="profileFriendCount">0</strong></div>
+          <div class="stat">Following<strong id="profileFollowingCount">0</strong></div>
+          <div class="stat">Followers<strong id="profileFollowerCount">0</strong></div>
+          <div class="stat">Posts<strong id="profilePostCount">0</strong></div>
+        </div>
+
+        <hr>
+
+        <button class="primary" onclick="editProfile()">Edit Profile</button>
+        <button class="secondary" onclick="document.getElementById('avatarUpload').click()">Change Photo</button>
+
+        <input id="avatarUpload" class="hidden" type="file" accept="image/*" onchange="changeAvatar(event)">
+      </div>
+
+      <div class="card">
+        <h3>Profile Actions</h3>
+        <button class="secondary" onclick="showPage('friends')">Manage Friends</button>
+        <button class="secondary" onclick="showPage('privacy')">Privacy Settings</button>
+      </div>
+
+      <div id="myPosts"></div>
+    </section>
+
+    <section id="page-pages" class="page hidden">
+      <div class="card">
+        <h2>📄 Alpha Pages</h2>
+        <p class="muted">Create a page for a creator, business, community or brand.</p>
+        <button class="primary" onclick="createPage()">＋ Create Page</button>
+      </div>
+
+      <div id="pagesList"></div>
+    </section>
+
+    <section id="page-stories" class="page hidden">
+      <div class="card">
+        <h2>🎞️ Stories</h2>
+        <p class="muted">Stories in this prototype are stored locally on this device.</p>
+        <button class="primary" onclick="openStoryComposer()">＋ Add Story</button>
+      </div>
+
+      <div id="allStories"></div>
+    </section>
+
+    <section id="page-messages" class="page hidden">
+      <div class="card">
+        <h2>💬 Messages</h2>
+        <p class="muted">Local demo chat. Messages are not delivered to other users.</p>
+
+        <label for="chatPerson">Choose a demo contact</label>
+        <select id="chatPerson" class="field" onchange="renderChat()"></select>
+
+        <div id="chatMessages" style="min-height:180px;max-height:340px;overflow-y:auto"></div>
+
+        <form id="chatForm" class="comment-form">
+          <input id="chatText" class="field" placeholder="Write a message..." required maxlength="1000">
+          <button class="primary">Send</button>
+        </form>
+
+        <hr>
+
+        <h3>Call Demo</h3>
+        <p class="muted">Camera preview works only if your browser grants permission and supports it.</p>
+        <button class="primary" onclick="startCall('audio')">📞 Test Audio</button>
+        <button class="primary" onclick="startCall('video')">📹 Test Video</button>
+        <button class="secondary" onclick="stopCall()">End Test</button>
+
+        <video id="cameraPreview" autoplay playsinline muted class="hidden"></video>
+        <p id="callStatus" class="muted"></p>
+      </div>
+    </section>
+
+    <section id="page-notifications" class="page hidden">
+      <div class="card">
+        <h2>🔔 Notifications</h2>
+        <div id="notificationsList"></div>
+      </div>
+    </section>
+
+    <section id="page-monetization" class="page hidden">
+      <div class="card">
+        <h2>💰 Creator Monetization</h2>
+        <p class="muted">
+          Demo dashboard only. No real earnings or payouts are generated.
+        </p>
+
+        <div class="stat-grid">
+          <div class="stat">Estimated Earnings<strong>$0.00</strong></div>
+          <div class="stat">Eligible Content<strong>0</strong></div>
+          <div class="stat">Payout Status<strong>Not set up</strong></div>
+          <div class="stat">Account Status<strong>Demo</strong></div>
+        </div>
+
+        <hr>
+
+        <h3>Creator Program</h3>
+        <p>Real monetization may require original content, policy compliance, account verification and meeting the relevant platform's eligibility rules.</p>
+
+        <ul>
+          <li>Publish original content.</li>
+          <li>Follow copyright and community rules.</li>
+          <li>Meet eligibility requirements.</li>
+          <li>Set up secure payment information when a real backend exists.</li>
+        </ul>
+
+        <button class="secondary" onclick="toast('Real monetization needs backend integration and a supported payment provider.')">
+          Check Demo Eligibility
+        </button>
+      </div>
+    </section>
+
+    <section id="page-privacy" class="page hidden">
+      <div class="card">
+        <h2>🔒 Privacy & Blocking</h2>
+
+        <label for="postPrivacy">Default post audience</label>
+        <select id="postPrivacy" class="field">
+          <option value="public">Public</option>
+          <option value="friends">Friends</option>
+          <option value="private">Only me</option>
+        </select>
+
+        <button class="primary" onclick="savePrivacy()">Save Preference</button>
+
+        <hr>
+
+        <h3>Blocked Users</h3>
+        <div id="blockedList"></div>
+      </div>
+    </section>
+
+    <section id="page-settings" class="page hidden">
+      <div class="card">
+        <h2>⚙️ Settings</h2>
+
+        <button class="secondary" onclick="toggleDark()">Toggle Dark Mode</button>
+
+        <hr>
+
+        <h3>Local Demo Data</h3>
+        <p class="muted">Your demo posts and preferences are stored in this browser's local storage.</p>
+
+        <button class="danger" onclick="resetDemo()">Reset Demo Data</button>
+
+        <hr>
+
+        <h3>Security Notice</h3>
+        <p>This prototype has no real account authentication, server-side authorization, encrypted message service or online database.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <aside class="rightbar">
+
+    <div class="card">
+      <h3>👤 Your Account</h3>
+      <div class="row">
+        <img class="avatar" id="rightAvatar" alt="Your profile">
+        <div>
+          <strong id="rightName">Alpha User</strong>
+          <div class="muted">Local demo account</div>
+        </div>
+      </div>
+
+      <hr>
+
+      <button class="secondary" style="width:100%" onclick="showPage('profile')">View Profile</button>
+    </div>
+
+    <div class="card">
+      <h3>📊 Your Activity</h3>
+      <div class="row-between"><span class="muted">Posts</span><strong id="rightPosts">0</strong></div>
+      <div class="row-between"><span class="muted">Friends</span><strong id="rightFriends">0</strong></div>
+      <div class="row-between"><span class="muted">Followers</span><strong id="rightFollowers">0</strong></div>
+    </div>
+
+    <div class="card">
+      <h3>💡 Alpha Features</h3>
+      <p class="muted">Post your ideas, connect with friends, follow creators and build communities.</p>
+      <button class="primary" style="width:100%" onclick="createPage()">Create a Page</button>
+    </div>
+
+  </aside>
+</div>
+
+<footer>
+  ALPHA Social • Prototype • Connect. Create. Share.
+</footer>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <button class="secondary modal-close" onclick="closeModal()">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+/* ---------------------------------------
+   ALPHA SOCIAL — FRONTEND DEMO
+   ---------------------------------------
+   Uses localStorage for this browser only.
+   Not a real online social network.
+---------------------------------------- */
+
+const $ = id => document.getElementById(id);
+
+const DEFAULT_AVATAR =
+  "data:image/svg+xml;charset=UTF-8," +
+  encodeURIComponent(`
+  <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+    <rect width="100%" height="100%" fill="#dbeafe"/>
+    <circle cx="50" cy="35" r="19" fill="#0866ff"/>
+    <path d="M15 100 Q18 62 50 62 Q82 62 85 100" fill="#0866ff"/>
+  </svg>`);
+
+const demoPeople = [
+  { id: "p1", name: "Aarav Sharma", bio: "Student and creator" },
+  { id: "p2", name: "Sara Khan", bio: "Photography and travel" },
+  { id: "p3", name: "Rohan Das", bio: "Technology enthusiast" },
+  { id: "p4", name: "Maya Thapa", bio: "Art and creativity" },
+  { id: "p5", name: "Kabir Ali", bio: "Learning something new every day" }
+];
+
+function loadState() {
+  try {
+    const saved = localStorage.getItem("alphaSocialDemo");
+    if (saved) return JSON.parse(saved);
+  } catch (error) {
+    console.warn("Could not load demo state", error);
+  }
+
+  return {
+    profile: {
+      name: "Alpha User",
+      bio: "Welcome to Alpha! Connect. Create. Share.",
+      avatar: DEFAULT_AVATAR
+    },
+    friends: [],
+    requests: ["p1", "p2"],
+    sentRequests: [],
+    following: [],
+    blocked: [],
+    posts: [
+      {
+        id: "welcome",
+        author: "Alpha Team",
+        text: "Welcome to Alpha! 🎉 This is a demo social feed. Create a post, upload a photo, follow creators and try the features.",
+        image: "",
+        likes: [],
+        comments: [],
+        audience: "public",
+        t
