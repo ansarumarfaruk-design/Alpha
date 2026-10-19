@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <title>Alpha — Connect. Create. Share.</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Alpha home"><span class="brand-mark">α</span><span>Alpha</span></a>
+    <label class="search"><span>⌕</span><input id="searchInput" type="search" placeholder="Search posts or people..." aria-label="Search posts or people"></label>
+    <div class="top-actions"><button class="icon-btn" id="themeBtn" title="Toggle theme" aria-label="Toggle theme">☼</button><button class="avatar top-avatar" title="Your profile">U</button></div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <button class="nav-item active" data-view="feed"><span>⌂</span> Home</button>
+      <button class="nav-item" data-view="explore"><span>✦</span> Explore</button>
+      <button class="nav-item" data-view="saved"><span>♡</span> Saved posts</button>
+      <button class="nav-item" data-view="profile"><span>◉</span> My profile</button>
+      <div class="sidebar-card"><div class="mini-logo">α</div><strong>Welcome to Alpha</strong><p>A place to connect, create, and share your world.</p><small>Demo version · Your posts stay in this browser</small></div>
+      <p class="side-foot">About · Privacy · Community<br>© 2026 Alpha</p>
+    </aside>
+
+    <main class="main">
+      <section class="welcome">
+        <div><p class="eyebrow">YOUR COMMUNITY, YOUR STORY</p><h1>What's happening?</h1><p class="muted">Share a thought, a photo, or a moment with the community.</p></div>
+        <div class="welcome-symbol">α</div>
+      </section>
+
+      <section class="composer card">
+        <div class="composer-head"><div class="avatar">U</div><div><strong>Create a post</strong><p class="muted">What would you like to share today?</p></div></div>
+        <textarea id="postText" maxlength="500" placeholder="Write something worth sharing..."></textarea>
+        <div id="imagePreview" class="image-preview hidden"></div>
+        <div class="composer-bottom"><label class="attach-btn">▧ <span>Photo</span><input type="file" id="imageInput" accept="image/*" hidden></label><span id="charCount" class="muted">0 / 500</span><button id="publishBtn" class="primary-btn">＋ Publish post</button></div>
+      </section>
+
+      <div class="feed-heading"><h2 id="feedTitle">Community feed</h2><span class="muted" id="postTotal">0 posts</span></div>
+      <section id="feed" class="feed" aria-live="polite"></section>
+      <section id="emptyState" class="empty card hidden"><div class="empty-icon">✦</div><h3>No posts here yet</h3><p class="muted">Be the first to share something with Alpha.</p></section>
+    </main>
+
+    <aside class="rightbar">
+      <section class="card trends"><h3>Trending topics</h3><button class="trend" data-tag="Learning"><span class="trend-icon">✎</span><span><strong>#Learning</strong><small>Grow a little every day</small></span></button><button class="trend" data-tag="Creativity"><span class="trend-icon">✧</span><span><strong>#Creativity</strong><small>Ideas worth sharing</small></span></button><button class="trend" data-tag="Technology"><span class="trend-icon">⌘</span><span><strong>#Technology</strong><small>What's new in tech</small></span></button></section>
+      <section class="card about-card"><div class="about-top"><span class="brand-mark">α</span><strong>Alpha</strong></div><p>Connect. Create. Share. Inspire.</p><p class="muted">A social space for ideas, creativity, and community.</p><div class="stats"><div><strong id="statPosts">0</strong><small>Posts</small></div><div><strong id="statLikes">0</strong><small>Likes</small></div><div><strong>∞</strong><small>Ideas</small></div></div></section>
+      <div class="right-note">Alpha is a prototype. Sign-in, cloud storage, and real user accounts are not connected yet.</div>
+    </aside>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
