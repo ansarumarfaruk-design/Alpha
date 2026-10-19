@@ -1,0 +1,85 @@
+videos.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Explore Videos | ALPHA</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="alpha-extra.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <a href="index.html" class="brand">
+        ▶ ALPHA
+    </a>
+
+    <form action="search.html" class="search-form">
+        <input
+            type="search"
+            name="q"
+            placeholder="Search videos..."
+            aria-label="Search videos"
+        >
+
+        <button type="submit">
+            Search
+        </button>
+    </form>
+
+    <a href="upload.html">
+        ＋ Upload
+    </a>
+
+</header>
+
+<main class="layout">
+
+    <nav class="side-nav">
+
+        <a href="index.html">⌂ Home</a>
+
+        <a href="videos.html" class="active">
+            ▶ Explore
+        </a>
+
+        <a href="subscriptions.html">
+            ▣ Subscriptions
+        </a>
+
+        <a href="channel.html">
+            ◉ My Channel
+        </a>
+
+        <a href="settings.html">
+            ⚙ Settings
+        </a>
+
+    </nav>
+
+    <section class="content-area">
+
+        <h1>Explore Videos</h1>
+
+        <p class="muted">
+            Discover videos, creators and stories on ALPHA.
+        </p>
+
+        <div id="video-grid" class="video-grid">
+            <p>Loading videos...</p>
+        </div>
+
+    </section>
+
+</main>
+
+<script src="alpha-data.js"></script>
+<script src="alpha-app.js"></script>
+
+</body>
+                            </html>
