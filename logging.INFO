@@ -1,0 +1,76 @@
+"""
+ALPHA Security Audit Logger
+
+Records security events without logging passwords,
+access tokens, or other sensitive credentials.
+"""
+
+import json
+import logging
+from datetime import datetime, timezone
+from pathlib import Path
+
+LOG_DIR = Path("logs")
+LOG_FILE = LOG_DIR / "security.log"
+
+logger = logging.getLogger("alpha.security")
+logger.setLevel(logging.INFO)
+
+if not logger.handlers:
+    LOG_DIR.mkdir(parents=True, exist_ok=True)
+
+    handler = logging.FileHandler(
+        LOG_FILE,
+        encoding="utf-8",
+    )
+
+    handler.setFormatter(
+        logging.Formatter("%(message)s")
+    )
+
+    logger.addHandler(handler)
+
+
+ALLOWED_EVENTS = {
+    "login_success",
+    "login_failure",
+    "logout",
+    "password_change",
+    "account_deletion_requested",
+    "permission_denied",
+}
+
+
+def log_security_event(
+    event: str,
+    user_id: str | None = None,
+) -> None:
+    """Record an approved security event."""
+
+    if event not in ALLOWED_EVENTS:
+        raise ValueError("Unsupported security event.")
+
+    record = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "event": event,
+        "user_id": user_id,
+    }
+
+    logger.info(
+        json.dumps(record, ensure_ascii=False)
+    )
+
+
+if __name__ == "__main__":
+    log_security_event(
+        "login_failure",
+        user_id="demo-user-001",
+    )
+
+    log_security_event(
+        "login_success",
+        user_id="demo-user-001",
+    )
+
+    print("Demo security events recorded.")
+    print(f"Log location: {LOG_FILE}")
