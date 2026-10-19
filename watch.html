@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Watch Video | ALPHA</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="alpha-extra.css">
+</head>
+
+<body>
+
+<header class="topbar">
+    <a href="index.html" class="brand">▶ ALPHA</a>
+
+    <form action="search.html" class="search-form">
+        <input
+            type="search"
+            name="q"
+            placeholder="Search videos..."
+            aria-label="Search videos"
+        >
+        <button type="submit">Search</button>
+    </form>
+
+    <a href="upload.html">＋ Upload</a>
+</header>
+
+<main class="watch-layout">
+
+    <section class="watch-main">
+
+        <div class="player-container">
+            <video
+                id="video-player"
+                controls
+                playsinline
+                poster=""
+            >
+                Your browser does not support video playback.
+            </video>
+        </div>
+
+        <h1 id="watch-title">Welcome to ALPHA</h1>
+
+        <div class="video-info">
+            <span id="watch-views">0 views</span>
+            <span id="watch-date">Recently uploaded</span>
+        </div>
+
+        <div class="video-actions">
+            <button id="like-button" type="button">
+                👍 Like <span id="like-count">0</span>
+            </button>
+
+            <button id="share-button" type="button">
+                ↗ Share
+            </button>
+
+            <button id="subscribe-button" type="button">
+                Subscribe
+            </button>
+        </div>
+
+        <section class="creator-info">
+            <h3 id="creator-name">ALPHA Creator</h3>
+            <p id="creator-description">
+                Discover and share amazing videos on ALPHA.
+            </p>
+        </section>
+
+        <section class="comments-section">
+            <h2>Comments</h2>
+
+            <form id="comment-form">
+                <textarea
+                    id="comment-input"
+                    placeholder="Write a comment..."
+                    maxlength="500"
+                    required
+                ></textarea>
+
+                <button type="submit">Post Comment</button>
+            </form>
+
+            <div id="comments-list">
+                <p class="muted">No comments yet. Be the first to comment!</p>
+            </div>
+        </section>
+
+    </section>
+
+    <aside class="recommended-videos">
+        <h2>Recommended Videos</h2>
+
+        <div id="recommended-grid">
+            <p class="muted">More videos coming soon.</p>
+        </div>
+    </aside>
+
+</main>
+
+<script src="alpha-data.js"></script>
+<script src="alpha-app.js"></script>
+
+</body>
+  </html>
