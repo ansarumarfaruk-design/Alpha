@@ -1,77 +1,28 @@
-# Alpha
-Alpha is a modern social media platform designed to connect people worldwide through videos, photos, posts, and meaningful interactions. It aims to provide users with a simple, creative, and engaging environment where they can share their ideas, express themselves, discover new content, and build communities.
-🚀 ALPHA — Social Media Platform
+# Alpha — Social Media App Prototype
 
-Tagline: Connect. Create. Share. Inspire.
+**Tagline:** Connect. Create. Share. Inspire.
 
-📱 About Alpha
+Alpha is a responsive front-end prototype for a social media platform. It is built with plain HTML, CSS, and JavaScript so it can be hosted as a static website.
 
-Alpha is a modern social media platform designed to connect people worldwide through videos, photos, posts, and meaningful interactions. It aims to provide users with a simple, creative, and engaging environment where they can share their ideas, express themselves, discover new content, and build communities.
+## Features in this prototype
+- Responsive home feed
+- Create text posts and attach small images
+- Like, comment, save, and delete your own posts
+- Search post text
+- Explore, saved posts, and My Posts views
+- Topic filters
+- Dark mode
+- Saves demo posts in your browser using `localStorage`
 
-Alpha's vision is to create an all-in-one social networking platform where people can connect, communicate, create content, and inspire others.
+## Run locally
+Open `index.html` in a browser, or publish the repository using GitHub Pages.
 
-✨ Key Features
+## Publish with GitHub Pages
+1. Upload `index.html`, `style.css`, and `app.js` to the root of your `Alpha` repository.
+2. Open repository **Settings → Pages**.
+3. Under **Build and deployment**, choose **Deploy from a branch**.
+4. Select branch `main` and folder `/ (root)`, then save.
+5. Wait for GitHub to provide your Pages URL.
 
-- 🔐 User Authentication: Secure sign-up, login, and logout functionality.
-- 🏠 Personalized Home Feed: Explore posts and videos from other users.
-- 📝 Create Posts: Share text, images, and personal updates.
-- 🎬 Video Sharing: Upload and watch videos.
-- ❤️ Like & Comment: Interact with posts and share opinions.
-- 👥 Follow System: Follow creators and build your community.
-- 💬 Messaging: Communicate with other users.
-- 🔔 Notifications: Receive updates about likes, comments, and followers.
-- 🔍 Search & Explore: Discover users and interesting content.
-- 👤 User Profiles: Customize your profile, bio, and profile picture.
-- 🌙 Modern UI: Enjoy a clean, responsive, and user-friendly interface.
-- 🛡️ Privacy & Security: Protect user accounts and personal information.
-
-These are the planned features; each feature will need to be implemented and tested before it can be considered functional.
-
-🎯 Our Mission
-
-Alpha aims to make social networking simple, accessible, and enjoyable for everyone. We want to create a platform where creativity meets connectivity and where every user has the opportunity to share their voice with the world.
-
-🔮 Our Vision
-
-Our long-term vision is to develop Alpha into a comprehensive social media platform inspired by popular networking applications while building its own unique identity.
-
-We aim to introduce innovative features, improve user experience, and create a positive digital community.
-
-🛠️ Development Goals
-
-The Alpha project will focus on:
-
-1. Building a modern and responsive interface.
-2. Implementing secure user registration and authentication.
-3. Developing a dynamic social media feed.
-4. Adding image and video-sharing capabilities.
-5. Creating likes, comments, and follow functionality.
-6. Developing notifications and messaging.
-7. Improving performance and security.
-8. Preparing the application for deployment.
-
-🌐 Project Information
-
-- Project Name: Alpha
-- Category: Social Media Platform
-- Platform: Web Application
-- Inspired By: Modern social networking applications
-- Tagline: Connect. Create. Share. Inspire.
-- Status: In Development
-
-💡 Why Alpha?
-
-The name Alpha represents beginnings, ambition, innovation, and the desire to build something meaningful.
-
-Alpha is more than a project name. It represents the beginning of an ambitious journey toward creating a modern digital platform.
-
-Our goal is simple: Bring people together through creativity, communication, and connection.
-
-
----
-
-🚀 ALPHA
-
-Connect. Create. Share. Inspire.
-
-Building connections. Empowering creativity. Inspiring the world.
+## Important limitations
+This is a front-end demo, not a production-ready social network. There is no real authentication, shared database, server-side storage, or secure video upload. Posts are saved only in the browser where they were created. Do not collect passwords or sensitive personal data in this prototype. A production version needs a backend and properly configured authentication/database/storage services.
