@@ -1,0 +1,159 @@
+/* ==================================
+   ALPHA SECURITY & VERIFICATION UI
+   ================================== */
+
+:root {
+    --alpha-blue: #1877f2;
+    --alpha-green: #16845b;
+    --alpha-red: #c62828;
+    --alpha-text: #202124;
+    --alpha-muted: #6b7280;
+    --alpha-border: #e5e7eb;
+    --alpha-surface: #ffffff;
+}
+
+/* Verified Blue Tick */
+
+.verified-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 18px;
+    height: 18px;
+    margin-left: 5px;
+
+    border-radius: 50%;
+    background: var(--alpha-blue);
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+
+    vertical-align: middle;
+}
+
+.verified-badge::after {
+    content: "✓";
+}
+
+/* Account Security Card */
+
+.security-card {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+
+    background: var(--alpha-surface);
+    border: 1px solid var(--alpha-border);
+    border-radius: 14px;
+}
+
+.security-card h2 {
+    margin-top: 0;
+    color: var(--alpha-text);
+}
+
+.security-description {
+    color: var(--alpha-muted);
+    line-height: 1.6;
+}
+
+/* Security Status */
+
+.security-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 12px;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.security-status--secure {
+    background: #e8f5e9;
+    color: var(--alpha-green);
+}
+
+.security-status--pending {
+    background: #fff8e1;
+    color: #8a6100;
+}
+
+.security-status--warning {
+    background: #ffebee;
+    color: var(--alpha-red);
+}
+
+/* Privacy Settings */
+
+.privacy-setting {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    padding: 14px 0;
+    border-bottom: 1px solid var(--alpha-border);
+}
+
+.privacy-setting:last-child {
+    border-bottom: none;
+}
+
+.privacy-setting label {
+    color: var(--alpha-text);
+    font-weight: 500;
+}
+
+/* Accessible Toggle */
+
+.privacy-toggle {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--alpha-blue);
+    cursor: pointer;
+}
+
+/* Verification Button */
+
+.verification-button {
+    display: inline-block;
+    padding: 11px 18px;
+
+    background: var(--alpha-blue);
+    color: #ffffff;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.verification-button:hover {
+    filter: brightness(0.92);
+}
+
+.verification-button:focus-visible {
+    outline: 3px solid #93c5fd;
+    outline-offset: 3px;
+}
+
+/* Mobile Responsive */
+
+@media (max-width: 600px) {
+    .security-card {
+        margin: 12px;
+        padding: 16px;
+    }
+
+    .privacy-setting {
+        align-items: flex-start;
+    }
+  }
