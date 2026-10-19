@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Search Videos | ALPHA</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="alpha-extra.css">
+</head>
+
+<body>
+
+<header class="topbar">
+    <a href="index.html" class="brand">▶ ALPHA</a>
+
+    <form action="search.html" method="GET" class="search-form">
+        <input
+            type="search"
+            name="q"
+            id="search-input"
+            placeholder="Search videos, creators..."
+            aria-label="Search videos and creators"
+        >
+
+        <button type="submit">Search</button>
+    </form>
+
+    <a href="upload.html">＋ Upload</a>
+</header>
+
+<main class="layout">
+
+    <nav class="side-nav">
+        <a href="index.html">⌂ Home</a>
+        <a href="videos.html">▶ Explore</a>
+        <a href="subscriptions.html">▣ Subscriptions</a>
+        <a href="channel.html">◉ My Channel</a>
+        <a href="settings.html">⚙ Settings</a>
+    </nav>
+
+    <section class="content-area">
+
+        <h1>Search Results</h1>
+
+        <p id="search-message" class="muted">
+            Search for your favorite videos and creators.
+        </p>
+
+        <div id="search-results" class="video-grid">
+            <p>Enter a keyword to find videos.</p>
+        </div>
+
+    </section>
+
+</main>
+
+<script src="alpha-data.js"></script>
+<script src="alpha-app.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get("q") || "";
+
+    const input = document.getElementById("search-input");
+    const message = document.getElementById("search-message");
+
+    input.value = query;
+
+    if (query.trim()) {
+        message.textContent =
+            'Results for: "' + query.trim() + '"';
+    }
+});
+</script>
+
+</body>
+</html>
