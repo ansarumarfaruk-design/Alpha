@@ -1,0 +1,100 @@
+channel.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Creator Channel | ALPHA</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="alpha-extra.css">
+</head>
+
+<body>
+
+<header class="topbar">
+    <a href="index.html" class="brand">▶ ALPHA</a>
+
+    <form action="search.html" method="GET" class="search-form">
+        <input
+            type="search"
+            name="q"
+            placeholder="Search videos..."
+            aria-label="Search videos"
+        >
+        <button type="submit">Search</button>
+    </form>
+
+    <a href="upload.html">＋ Upload</a>
+</header>
+
+<main class="layout">
+
+    <nav class="side-nav">
+        <a href="index.html">⌂ Home</a>
+        <a href="videos.html">▶ Explore</a>
+        <a href="subscriptions.html">▣ Subscriptions</a>
+        <a href="channel.html" class="active">◉ My Channel</a>
+        <a href="settings.html">⚙ Settings</a>
+    </nav>
+
+    <section class="content-area">
+
+        <div class="channel-banner">
+            <h1>Welcome to ALPHA</h1>
+            <p>Your creativity. Your community. Your channel.</p>
+        </div>
+
+        <div class="channel-profile">
+
+            <div class="channel-avatar" aria-label="Channel avatar">
+                A
+            </div>
+
+            <div class="channel-details">
+                <h2 id="channel-name">ALPHA Creator</h2>
+
+                <p class="muted">
+                    @alphacreator ·
+                    <span id="subscriber-count">0</span> subscribers ·
+                    <span id="channel-video-count">0</span> videos
+                </p>
+
+                <p id="channel-description">
+                    Welcome to my channel! Discover videos, share ideas,
+                    and join the ALPHA community.
+                </p>
+
+                <button id="edit-channel-button" type="button">
+                    Edit Channel
+                </button>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="channel-tabs">
+            <button type="button" class="active">Videos</button>
+            <button type="button">Shorts</button>
+            <button type="button">About</button>
+        </div>
+
+        <h2>Uploaded Videos</h2>
+
+        <div id="channel-videos" class="video-grid">
+            <p class="muted">
+                Your uploaded videos will appear here.
+            </p>
+        </div>
+
+    </section>
+
+</main>
+
+<script src="alpha-data.js"></script>
+<script src="alpha-app.js"></script>
+
+</body>
+  </html>
